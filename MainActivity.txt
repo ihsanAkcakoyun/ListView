@@ -1,0 +1,130 @@
+package com.example.bikiwideneme_1;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+
+ArrayList<String> arrayList;
+
+Intent sepet;
+double domK=0;
+double limK=0;
+double kirK=0;
+double kayK=0;
+EditText domateskilo;
+EditText kayisikilo;
+EditText limonkilo;
+EditText kirazkilo;
+
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        arrayList = new ArrayList<>();
+
+domateskilo = findViewById(R.id.domatesFiyat);
+kayisikilo = findViewById(R.id.kayisiFiyat);
+limonkilo = findViewById(R.id.limonFiyat);
+kirazkilo = findViewById(R.id.kirazFiyat);
+
+
+    }
+       public void domatesButon(View view){
+        if(domateskilo.getText().toString().matches(""))
+        {
+            domK=domK+1;
+        }
+        else {
+            domK = Double.parseDouble(domateskilo.getText().toString());
+        }
+arrayList.add("domates");
+        Toast.makeText(getApplicationContext(),"Domates Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void salatalikButon(View view){
+
+        Toast.makeText(getApplicationContext(),"Salatalik Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void soganButon(View view){
+
+        Toast.makeText(getApplicationContext(),"Sogan Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void marulButon(View view){
+
+        Toast.makeText(getApplicationContext(),"Marul Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void kayisiButon(View view){
+        if(kayisikilo.getText().toString().matches(""))
+        {
+            kayK=kayK+1;
+        }
+        else {
+
+            kayK = Double.parseDouble(kayisikilo.getText().toString());
+        }
+        arrayList.add("kayisi");
+        Toast.makeText(getApplicationContext(),"Kayisi Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void limonButon(View view){
+        if(limonkilo.getText().toString().matches(""))
+        {
+            limK=limK+1;
+        }
+        else {
+            limK = Double.parseDouble(limonkilo.getText().toString());
+        }
+        Toast.makeText(getApplicationContext(),"Limon Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void patatesButon(View view){
+
+        Toast.makeText(getApplicationContext(),"Patates Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+
+    }
+    public void kirazButon(View view){
+        if ( kirazkilo.getText().toString().matches(""))
+        {
+            kirK=kirK+1;
+        }
+        else {
+            kirK = Double.parseDouble(kirazkilo.getText().toString());
+        }
+        Toast.makeText(getApplicationContext(),"Kiraz Sepete Eklendi",Toast.LENGTH_SHORT).show();
+
+    }
+    public void hamper ( View view){
+
+        sepet = new Intent(getApplicationContext(),Sepet.class);
+        sepet.putExtra("kirazkilo",kirK);
+        sepet.putExtra("domateskilo", domK);
+        sepet.putExtra("kayisikilo", kayK);
+        sepet.putExtra("limonkilo",limK);
+        startActivity(sepet);
+    }
+    public void sayfaDegis (View view){
+        sepet = new Intent(getApplicationContext(),Main3Activity.class);
+        startActivity(sepet);
+    }
+    public void listeButon (View view){
+        sepet = new Intent(getApplicationContext(),Liste.class );
+
+sepet.putStringArrayListExtra("sebze",arrayList);
+        startActivity(sepet);
+    }
+}
