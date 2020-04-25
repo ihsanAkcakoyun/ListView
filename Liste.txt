@@ -1,0 +1,34 @@
+package com.example.bikiwideneme_1;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
+public class Liste extends AppCompatActivity {
+Intent sepet;
+    ListView liste;
+    ArrayList<String> SiparisListesi;
+    ArrayAdapter arrayAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_liste);
+        sepet = getIntent();
+        String[] list = sepet.getStringArrayExtra("sebze");
+
+        liste = findViewById(R.id.listeView);
+        SiparisListesi = new ArrayList<>();
+SiparisListesi.toArray(list);
+
+
+        arrayAdapter = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_expandable_list_item_1,SiparisListesi);
+        liste.setAdapter(arrayAdapter);
+    }
+}
